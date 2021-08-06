@@ -17,10 +17,10 @@ app.use(express.static(__dirname + "/public"))
 
 // Connecting to existing database
 var connection = mysql.createConnection({
-	host	:	'localhost',
-	user	:	'root',
+	host	:	'<DB host name here>',
+	user	:	'<DB user name here>',
 	database:	'spending',
-	password:	'sakura',
+	password:	'<DB user password here>',
 	multipleStatements: true
 });
 
