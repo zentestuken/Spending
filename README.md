@@ -1,8 +1,8 @@
-Simple Node.js web app for tracking family spending.
+Simple web app for tracking family spending.
 
 Designed to work with MySQL database.
 
-Requires following Node.js modules:
+Requires Node.js with following  modules:
 - mysql
 - express
 - body-parser
