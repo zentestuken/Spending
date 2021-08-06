@@ -1,0 +1,140 @@
+<!-- THIS IS THE MAIN PAGE OF OUR APP -->
+<!-- It's an ejs file which allows to use js embedded in html -->
+
+<!-- connects external CSS file in 'public' directory -->
+	<!-- applies google roboto font -->
+<link rel="stylesheet" href="/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+
+<head>
+	<title>Spending</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+	<div class="header">
+		<strong style="font-size: 25pt">Spending</strong><BR>
+		<span style="margin-left: 10px; margin-right: 10px;">Last month</span>
+		<a href="/total"><span class="switch">Whole time</span></a>	
+	</div> 
+	<% var total = 0.00%>
+	<% for (var i = 0; i < spend_list.length; i++) { %>
+		<% total+= spend_list[i].amount %>
+	<% } %>
+	<div class="total">
+		Total spent: $<strong><%=total.toFixed(2)%></strong>
+	</div>
+	<h3>Statistics:</h3>
+	<div class="canvases">
+  		<div class="chart">
+			<canvas id="cat_Chart"></canvas>
+		</div>
+		<div class="chart">
+			<canvas id="pers_Chart"></canvas>
+		</div>
+	</div>
+	<script>
+		var ctx = document.getElementById('cat_Chart');
+		var myChart = new Chart(ctx, {
+			type: 'pie',
+			options: {
+					layout: {
+						padding: {bottom:4}
+				}
+			},
+			data: {
+				labels: <%- JSON.stringify(lab_cat); %>,
+				datasets: [{
+					data: <%- JSON.stringify(dat_cat); %>,
+					backgroundColor: [
+						'rgba(255, 99, 132, 0.5)',
+						'rgba(54, 162, 235, 0.5)',
+						'rgba(255, 206, 86, 0.5)',
+						'rgba(75, 192, 192, 0.5)',
+						'rgba(153, 102, 255, 0.5)',
+						'rgba(255, 159, 64, 0.5)'
+					],
+					borderColor: [
+						'rgba(255, 99, 132, 1)',
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 206, 86, 1)',
+						'rgba(75, 192, 192, 1)',
+						'rgba(153, 102, 255, 1)',
+						'rgba(255, 159, 64, 1)'
+					],
+					borderWidth: 1,
+					hoverOffset: 4
+				}]
+			}
+		});
+	</script>
+	<script>
+		var ctx = document.getElementById('pers_Chart');
+		var myChart = new Chart(ctx, {
+			type: 'doughnut',
+			options: {
+					layout: {
+						padding: {bottom:4}
+				}
+			},
+			data: {
+				labels: <%- JSON.stringify(lab_pers); %>,
+				datasets: [{
+					label: '# of Votes',
+					data: <%- JSON.stringify(dat_pers); %>,
+					backgroundColor: [
+						'rgba(63, 99, 191, 0.5)',
+						'rgba(191, 63, 104, 0.5)',
+						'rgba(153, 153, 153, 0.5)'
+					],
+					borderColor: [
+						'rgba(63, 99, 191, 1)',
+						'rgba(191, 63, 104, 1)',
+						'rgba(153, 153, 153, 1)'
+					],
+					borderWidth: 1,
+					hoverOffset: 4
+				}]
+			}
+		});
+	</script>
+	<BR>
+		<div class="add_panel">
+		<h3>Add new spending:</h3>
+			<form method="POST" action="/add">
+				<div class="add_header">
+					<em>Choose person:</em>
+				</div>
+				<div class="add_line">
+					<% for (var i = 0; i < pers_list.length; i++) { %>
+						<div class="add_item">
+							<input type="radio" id= '<%=pers_list[i].name%>' name="pers" value="<%=pers_list[i].name%>">
+							<label for="<%=pers_list[i].name%>"> <%=pers_list[i].name%></label>
+						</div>
+					<% } %>
+				</div>
+				<div class="add_header">
+					<em>Choose category:</em>
+				</div>
+				<div class="add_line">
+					<% for (var i = 0; i < cat_list.length; i++) { %>
+						<div class="add_item">
+							<input type="radio" id= <%=cat_list[i].name%> name="cat" value="<%=cat_list[i].name%>">
+							<label for="<%=cat_list[i].name%>"> <%=cat_list[i].name%></label><br>
+						</div>
+					<% } %>
+				</div>
+				<div class="add_header">
+						<em>Amount:</em><BR>
+					</div> 
+				<div class="add_line">
+					<div class="add_item">
+						$ <input class="amount" type="number" min="1.00" max="10000.00" step="0.01" name="amount" pattern="^\d*(\.\d{0,2})?$" value="1.00" onClick="this.select();"><br>
+					</div>
+				</div>
+				<div class="submit_container">
+					<input class="submit" type="submit" value="Submit">
+				</div>
+			</form>
+		</div>
+</body>

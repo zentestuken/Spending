@@ -1,0 +1,119 @@
+body {
+  font-family: "Comic neue", sans-serif;
+}
+
+.header {
+  margin-bottom: 5px;
+  padding-bottom: 10px;
+  text-align: center;
+  color: white;
+  background-color: rgba(97, 63, 191, 0.7);
+  border-radius: 20px;
+}
+
+a {
+  color: lightgrey;
+  text-decoration:none;
+}
+
+.switch{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.total {
+  padding: 5px;
+  text-align: center;
+}
+
+/* Two canvas containers (50% for two items) */
+.chart {
+  width: 350;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.canvases {
+  display: flex;
+  justify-content: center;
+}
+
+h3 {
+  margin-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  color: white;
+  background-color: rgba(63, 123, 191, 0.8);
+  border-radius: 20px;
+}
+
+.add_header {
+  text-align: left;
+  margin-left: 15px;
+  margin-top: 10px;
+  margin-bottom: 3px;
+}
+
+.add_line {
+  display: flex;
+  justify-content: center;
+  border-width: 2;
+  border-color: rgba(63, 123, 191, 0.6);
+  border-style: solid;
+  border-radius: 20px;
+  background-color: rgba(63, 123, 191, 0.05);
+}
+
+.add_item {
+  margin: 15;
+}
+
+.amount {
+  border-color: rgba(63, 123, 191, 0.6);
+  border-style: groove;
+  border-radius: 5px;
+  font-size: 12pt;
+  height: 30px;
+  padding-top: 2px;
+  padding-left: 5px;
+  font-weight: normal;
+  color: rgb(107, 40, 102, 0.8);
+  width: 100;
+}
+
+.amount:focus {
+  outline: none;
+  color: rgb(107, 40, 102, 0.8);
+  font-weight: bold;
+}
+
+.submit_container {
+  display: flex;
+  justify-content: center;
+}
+
+.submit {
+  margin-top: 20px;
+  border-radius: 15px;
+  width: 30%;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+}
+
+/* Hides arrows in amount input field */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
