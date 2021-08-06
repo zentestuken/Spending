@@ -14,3 +14,5 @@ Files in preparations folder:
 - "schema.sql" : SQL-script creating all required DB tables
 - "structure_only.js" : sets persons and categories in DB
 - "insert_data.js" : the same as above AND inserts automatically generated spending data (for testing purposes).
+
+Note that DB host address, user and password should be specified in "app.js" file.
